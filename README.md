@@ -20,6 +20,10 @@ It tracks the P2E **Patton v3 Flow/Foundation model**: every project is a *Produ
 
 Product repos may own their own copy of `p2e-mode` under `.cursor/skills/` — the plugin sync skips linking when a repo-owned copy exists.
 
+## Stories vs Issues
+
+**P2E layers** = capability change on the map. **GitHub Issues** = bugs (and similar) that do not redefine capabilities. Separation is primary — no default issue↔story sync. Details: [`p2e-mode` references](skills/p2e-mode/references/p2e-model.md#stories-vs-issues).
+
 ## Install in Claude Code
 
 From inside a Claude Code session:
@@ -141,8 +145,8 @@ The plugin exposes the P2E MCP server tools via `mcp__plugin_p2e_p2e__*`. Each t
 | `story_log` | `append` | Append a narrative log entry to a story. Append-only — no `update` or `delete`. |
 | `evidence` | `validate_proof`, `template` | AC evidence proof contract validation and template generation. |
 | `validate` | `run` | Run the P2E story-thickness predicate against a story and return failing clauses. |
-| `create_github_issue` | — | Create a linked GitHub issue for a story (one-shot). |
-| `sync_github_status` | — | Reconcile P2E story status with the linked GitHub issue label. |
+| `create_github_issue` | — | **Legacy / non-default.** Optional one-shot link only — do **not** use as the bug tracker path. See [Stories vs Issues](skills/p2e-mode/references/p2e-model.md#stories-vs-issues). |
+| `sync_github_status` | — | **Legacy / non-default.** Issue↔story status sync is retired as the operating model; do not run as routine ops. |
 
 > Note: only the `products`/`projects` tool changed its key parameter under Patton v3. Every other tool still takes `project_slug`. The `.p2e/project.json` binding anchors that one slug value.
 

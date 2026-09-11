@@ -21,6 +21,12 @@ Before create/update/UXO/Wave work: [`references/p2e-model.md`](references/p2e-m
 - `.p2e/project.json` → `product_slug` on every MCP call. No binding → create one before any other call.
 - Legacy `project_slug` still accepted.
 
+## Stories vs Issues
+
+**Layers** track capability change (introduce / modify / deprecate under a UXO). **GitHub Issues** track bugs that do not redefine capabilities. No default GH↔story sync — manage issues in GitHub and releases/Waves in P2E independently.
+
+Facts + decision table: [`references/p2e-model.md`](references/p2e-model.md#stories-vs-issues). `FIXES` is a **layer→layer** relation, not a GH bug link.
+
 ## Lifecycle
 
 `DRAFT → OPEN → IN_PROGRESS → IN_REVIEW → DONE` (+ `BLOCKED`, `CANCELLED`)
@@ -80,6 +86,6 @@ Primary endpoint: `https://p2e.columenlabs.com/api/mcp` (OAuth unchanged). Confi
 
 ## Pointers
 
-- Model + Wave + tags: `references/p2e-model.md`
+- Model + Wave + tags + Stories vs Issues: `references/p2e-model.md`
 - Release reviewer subagent (Cursor): `.cursor/agents/p2e-reviewer.md`
 - Product repo (when present): `docs/P2E-lifecycle.md`, `docs/P2E-handover.md`
