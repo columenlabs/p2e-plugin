@@ -22,7 +22,7 @@ Product → Release → Wave (W{n}, unbounded) → ordered member Layers
 | **Wave** | First-class package for a Product+Release with unbounded `n` (`W{n}`); gate/branch/status/membership/shipChecks/PR | A fixed W1–W25 enum or a priority rank |
 | **Capability** | `INTRODUCES` / `MODIFIES` / `DEPRECATES` (+ `isBreaking`; `DEPRECATES` absorbs retired `REMOVES`) | A UXO objective |
 | **Criterion** | One testable AC; verifier and reviewer assess separately | Bulk-approvable |
-| **Relation** | `DEPENDS_ON` / `BUILDS_ON` / `FIXES` / `SUPERSEDES` | Containment |
+| **Relation** | `DEPENDS_ON` / `BUILDS_ON` / `FIXES` / `SUPERSEDES` (`FIXES` = layer corrects layer, not a GH bug) | Containment; not a GitHub issue link |
 
 Foundation slots are seeded and immutable. Journey → persona Flow; platform/infra → Foundation.
 
@@ -81,10 +81,35 @@ Multi-tag layers take the union of shapes.
 
 `objectives[]` are MECE noun phrases within the UXO; `description` synthesizes them. Layers land on objectives; gaps are new layers, not diluted objectives.
 
+## Stories vs Issues
+
+**Separation of concerns is primary.** Do not treat GitHub Issues and P2E layers as mirrors.
+
+| Track in | For | Not for |
+|----------|-----|---------|
+| **P2E Layer (Story)** | Work that **introduces / modifies / deprecates** capabilities under a UXO (Layer → UXO → Phase → Flow → Product) | Ordinary bugs that only repair existing behavior without a capability change |
+| **GitHub Issue** | Usually **bugs** (and similar defects) on an already-shipped feature/capability — tracked in the repo's issue tracker | Capability evolution that belongs on the map as a new or corrective layer |
+
+### When to create which
+
+- **Create a P2E layer** when the change is product work on the map: new capability, intentional modify/deprecate, thick-spec BUILD item, Wave membership.
+- **Create a GitHub issue** when something is broken on an existing capability and the fix does **not** redefine the capability story — subscribe/manage issues in GitHub independently of P2E releases.
+- **Do not** default to `create_github_issue` / `sync_github_status` / issue↔story body sync. Historical GH↔story coupling is retired as the desired operating model; harnesses no longer need it.
+- Optional one-way links (e.g. a PR that mentions an issue) are fine; **do not** auto-close GH issues from story DONE, and **do not** mutate live map stories from issue webhooks, unless a migration doc explicitly asks for a one-time note.
+
+### `FIXES` relations (layers only)
+
+`Relation.type = FIXES` links one **layer** that intentionally corrects another **layer's** capability story. It is **not** a stand-in for "this GitHub bug." Bugs stay in GitHub; capability corrections stay as layers (often with `FIXES` + `MODIFIES` / `INTRODUCES` change entries).
+
+### Why
+
+Project-scoped **subscriptions** can manage **issues from GitHub** and **releases / Waves from P2E** independently.
+
 ## Invariants
 
 - MCP is authoritative — no parallel story state in files.
 - Preview before writes on layers/UXOs/criteria/capabilities.
 - Never create Foundation phases via MCP.
 - Human Mark DONE is the sole acceptance gate for a layer.
+- Stories (layers) ≠ GitHub Issues — see [Stories vs Issues](#stories-vs-issues); no default issue↔story sync.
 - Wave `n` is unbounded — never reject or clamp at W25.

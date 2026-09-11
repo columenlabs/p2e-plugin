@@ -305,7 +305,7 @@ const NODES = [
   { id:'sp-brain',label:'superpowers:brainstorming',sub:'onboarding interview',layer:'deps',x:-280, z:  60 },
   { id:'sp-plan', label:'superpowers:writing-plans',sub:'plan doc for impl',  layer:'deps',x:  20, z: -60 },
   // External layer
-  { id:'ext-mcp',   label:'P2E MCP server',sub:'p2e-mocha.vercel.app',  layer:'external', x:-440, z:  80 },
+  { id:'ext-mcp',   label:'P2E MCP server',sub:'p2e.columenlabs.com',  layer:'external', x:-440, z:  80 },
   { id:'ext-gh',    label:'GitHub API',    sub:'gh CLI',                layer:'external', x:-220, z: -80 },
   { id:'ext-cache', label:'Local cache',   sub:'~/.cache/p2e/',         layer:'external', x:  20, z:  80 },
   { id:'ext-git',   label:'git + worktree',sub:'feat/<story>',          layer:'external', x: 260, z: -80 }
@@ -383,7 +383,7 @@ const NODE_DESC = {
   'mcp-pr':'Projects. list/get/create/update. Project slug scopes every other call.',
   'mcp-ux':'UXOs (user experience objectives). Anchor phase+tier cells.',
   'mcp-gh':'Opens a GH issue from a story and links them. Requires project.githubRepo + PAT configured.',
-  'ext-mcp':'Remote MCP server at p2e-mocha.vercel.app. Auth + audit log + persistence.',
+  'ext-mcp':'Remote MCP server at p2e.columenlabs.com. Auth + audit log + persistence.',
   'ext-gh':'GitHub API via gh CLI on the local machine. Issue create/edit/label/comment.',
   'ext-cache':'Local JSON cache. Written by /p2e-update-story, read by the PreToolUse hook. 30s TTL.',
   'ext-git':'Git worktree created by orchestrator before spawning implementers.',

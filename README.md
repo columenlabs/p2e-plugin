@@ -20,6 +20,10 @@ It tracks the P2E **Patton v3 Flow/Foundation model**: every project is a *Produ
 
 Product repos may own their own copy of `p2e-mode` under `.cursor/skills/` — the plugin sync skips linking when a repo-owned copy exists.
 
+## Stories vs Issues
+
+**P2E layers** = capability change on the map. **GitHub Issues** = bugs (and similar) that do not redefine capabilities. Separation is primary — no default issue↔story sync. Details: [`p2e-mode` references](skills/p2e-mode/references/p2e-model.md#stories-vs-issues).
+
 ## Install in Claude Code
 
 From inside a Claude Code session:
@@ -50,7 +54,7 @@ Cursor reads the `.cursor/` directory directly. Clone or sync this repo so `.cur
 
 - Type **`/p2e-mode`** in Agent chat — Enter attaches it to one message; **Option+Enter** (Mac) / **Alt+Enter** (Windows) or **Use as Mode** keeps it on for the whole session as a Custom Mode (cyan `book-open` badge)
 - The always-applied rule `.cursor/rules/p2e-policy.mdc` keeps Cursor aligned with Claude and Codex
-- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) using the same URL as [`.mcp.json`](./.mcp.json) — `https://p2e-mocha.vercel.app/api/mcp` by default
+- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) using the same URL as [`.mcp.json`](./.mcp.json) — `https://p2e.columenlabs.com/api/mcp` by default
 
 ### Cloud Agents (product repos)
 
@@ -90,7 +94,7 @@ Neither hook does anything in repos that lack `.p2e/project.json` — non-P2E re
 
 ## Configure
 
-The plugin talks to a running P2E instance. It ships with the hosted production endpoint at `https://p2e-mocha.vercel.app/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json).
+The plugin talks to a running P2E instance. It ships with the hosted primary production endpoint at `https://p2e.columenlabs.com/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json). (The Vercel host `p2e-mocha.vercel.app` is parallel/legacy — not the canonical MCP URL.)
 
 To point it at your own instance, edit that URL directly — either in the plugin's `.mcp.json`, or in your own product repo's project-scoped `.mcp.json`:
 
@@ -110,7 +114,7 @@ The shipped `.mcp.json` holds a **literal** URL on purpose: Codex does not expan
 Claude Code *does* expand that syntax at connect time. If Claude Code is your only host, you can drive the endpoint from the environment in **your own** project-scoped `.mcp.json`:
 
 ```json
-{ "mcpServers": { "p2e": { "type": "http", "url": "${P2E_MCP_URL:-https://p2e-mocha.vercel.app/api/mcp}" } } }
+{ "mcpServers": { "p2e": { "type": "http", "url": "${P2E_MCP_URL:-https://p2e.columenlabs.com/api/mcp}" } } }
 ```
 
 Cursor takes the same URL in `.cursor/mcp.json`, and Codex users editing an already-installed MCP entry should set a concrete URL.
@@ -141,8 +145,8 @@ The plugin exposes the P2E MCP server tools via `mcp__plugin_p2e_p2e__*`. Each t
 | `story_log` | `append` | Append a narrative log entry to a story. Append-only — no `update` or `delete`. |
 | `evidence` | `validate_proof`, `template` | AC evidence proof contract validation and template generation. |
 | `validate` | `run` | Run the P2E story-thickness predicate against a story and return failing clauses. |
-| `create_github_issue` | — | Create a linked GitHub issue for a story (one-shot). |
-| `sync_github_status` | — | Reconcile P2E story status with the linked GitHub issue label. |
+| `create_github_issue` | — | **Legacy / non-default.** Optional one-shot link only — do **not** use as the bug tracker path. See [Stories vs Issues](skills/p2e-mode/references/p2e-model.md#stories-vs-issues). |
+| `sync_github_status` | — | **Legacy / non-default.** Issue↔story status sync is retired as the operating model; do not run as routine ops. |
 
 > Note: only the `products`/`projects` tool changed its key parameter under Patton v3. Every other tool still takes `project_slug`. The `.p2e/project.json` binding anchors that one slug value.
 
@@ -201,5 +205,6 @@ P2E's Patton v3 ontology, which this plugin tracks:
 ## Links
 
 - P2E main repo: https://github.com/columenlabs/p2e
-- Hosted demo: https://p2e-mocha.vercel.app
+- Hosted production: https://p2e.columenlabs.com (MCP `/api/mcp`)
+- Legacy Vercel surface: https://p2e-mocha.vercel.app
 - Issue tracker: https://github.com/columenlabs/p2e/issues
