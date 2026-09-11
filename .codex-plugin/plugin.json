@@ -7,8 +7,8 @@
     "email": "noreply@users.noreply.github.com",
     "url": "https://github.com/bchoor"
   },
-  "homepage": "https://github.com/bchoor/p2e-plugin",
-  "repository": "https://github.com/bchoor/p2e-plugin",
+  "homepage": "https://github.com/columenlabs/p2e-plugin",
+  "repository": "https://github.com/columenlabs/p2e-plugin",
   "license": "MIT",
   "keywords": [
     "p2e",
@@ -30,9 +30,9 @@
       "Read",
       "Write"
     ],
-    "websiteURL": "https://github.com/bchoor/p2e-plugin",
-    "privacyPolicyURL": "https://github.com/bchoor/p2e-plugin",
-    "termsOfServiceURL": "https://github.com/bchoor/p2e-plugin",
+    "websiteURL": "https://github.com/columenlabs/p2e-plugin",
+    "privacyPolicyURL": "https://github.com/columenlabs/p2e-plugin",
+    "termsOfServiceURL": "https://github.com/columenlabs/p2e-plugin",
     "defaultPrompt": [
       "Read p2e-mode and work on the next P2E story",
       "Implement this P2E layer and move it to IN_REVIEW",

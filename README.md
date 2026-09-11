@@ -1,6 +1,6 @@
 # p2e-plugin — Claude Code, Codex, and Cursor plugin for P2E
 
-This plugin connects [P2E](https://github.com/bchoor/p2e) story-map work to the P2E MCP server on Claude Code, Codex, and Cursor.
+This plugin connects [P2E](https://github.com/columenlabs/p2e) story-map work to the P2E MCP server on Claude Code, Codex, and Cursor.
 
 P2E is **product intelligence** — a living map of your product that grows iteratively as you capture UXOs, draft layers, implement, and land work. It is not a one-shot spec tool.
 
@@ -25,14 +25,14 @@ Product repos may own their own copy of `p2e-mode` under `.cursor/skills/` — t
 From inside a Claude Code session:
 
 ```text
-/plugin marketplace add bchoor/p2e-plugin
+/plugin marketplace add columenlabs/p2e-plugin
 /plugin install p2e@p2e-plugins
 ```
 
 Pin the marketplace to a tag for stability:
 
 ```text
-/plugin marketplace add bchoor/p2e-plugin@v0.12.10
+/plugin marketplace add columenlabs/p2e-plugin@v0.12.10
 /plugin install p2e@p2e-plugins
 ```
 
@@ -58,9 +58,9 @@ Do **not** put a skill path in `.env`. Hook the same `.cursor/environment.json` 
 
 ```json
 {
-  "install": "git clone --depth 1 https://github.com/bchoor/p2e-plugin.git \"$HOME/p2e-plugin\" && bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\"",
+  "install": "git clone --depth 1 https://github.com/columenlabs/p2e-plugin.git \"$HOME/p2e-plugin\" && bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\"",
   "start": "bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\" --update",
-  "repositoryDependencies": ["github.com/bchoor/p2e-plugin"]
+  "repositoryDependencies": ["github.com/columenlabs/p2e-plugin"]
 }
 ```
 
@@ -200,6 +200,6 @@ P2E's Patton v3 ontology, which this plugin tracks:
 
 ## Links
 
-- P2E main repo: https://github.com/bchoor/p2e
+- P2E main repo: https://github.com/columenlabs/p2e
 - Hosted demo: https://p2e-mocha.vercel.app
-- Issue tracker: https://github.com/bchoor/p2e/issues
+- Issue tracker: https://github.com/columenlabs/p2e/issues
