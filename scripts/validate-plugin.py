@@ -156,7 +156,7 @@ def validate_expected_files():
         "repositoryDependencies",
         "--update",
         ".cursor/skills",
-        "github.com/bchoor/p2e-plugin",
+        "github.com/columenlabs/p2e-plugin",
         "p2e-mode",
     ):
         assert_true(

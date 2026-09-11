@@ -1,7 +1,7 @@
 {
   "name": "p2e-plugins",
   "owner": {
-    "name": "bchoor"
+    "name": "columenlabs"
   },
   "metadata": {
     "description": "Marketplace for the p2e plugin \u2014 P2E operating mode across Claude Code, Codex, and Cursor, backed by the P2E MCP."
@@ -15,8 +15,8 @@
       "author": {
         "name": "bchoor"
       },
-      "homepage": "https://github.com/bchoor/p2e-plugin",
-      "repository": "https://github.com/bchoor/p2e-plugin",
+      "homepage": "https://github.com/columenlabs/p2e-plugin",
+      "repository": "https://github.com/columenlabs/p2e-plugin",
       "license": "MIT",
       "keywords": [
         "p2e",

@@ -77,7 +77,7 @@ This plugin tracks the P2E backend's Patton v3 ontology — keep skill prose con
 ## Commit and PR conventions
 
 - Branch naming: `<type>/<topic-kebab>` per the personal CLAUDE.md (`feat/`, `spec/`, `design/`).
-- Repo allowlist: stay in `bchoor/*` — this repo is `bchoor/p2e-plugin`.
+- Repo allowlist: stay in `columenlabs/*` — this repo is `columenlabs/p2e-plugin`.
 - "Cut a release" → use the repo release workflow (do not improvise version bumps; the marketplace and Codex install surface both pin from version tags).
 - Markdown: no hard wraps in paragraphs. Front-matter required on `docs/feat-*` files.
 

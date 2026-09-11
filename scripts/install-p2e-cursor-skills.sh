@@ -5,9 +5,9 @@
 # Designed to run from a product repo's `.cursor/environment.json`:
 #
 #   {
-#     "install": "... && git clone --depth 1 https://github.com/bchoor/p2e-plugin.git \"$HOME/p2e-plugin\" && bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\"",
+#     "install": "... && git clone --depth 1 https://github.com/columenlabs/p2e-plugin.git \"$HOME/p2e-plugin\" && bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\"",
 #     "start": "bash \"$HOME/p2e-plugin/scripts/install-p2e-cursor-skills.sh\" --update",
-#     "repositoryDependencies": ["github.com/bchoor/p2e-plugin"]
+#     "repositoryDependencies": ["github.com/columenlabs/p2e-plugin"]
 #   }
 #
 # `--update` fetches the plugin ref (default: origin/main) then re-links. `install`
@@ -23,7 +23,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PLUGIN_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 WORKSPACE="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
-PLUGIN_REPO="${P2E_PLUGIN_REPO:-https://github.com/bchoor/p2e-plugin.git}"
+PLUGIN_REPO="${P2E_PLUGIN_REPO:-https://github.com/columenlabs/p2e-plugin.git}"
 PLUGIN_REF="${P2E_PLUGIN_REF:-main}"
 PLUGIN_HOME="${P2E_PLUGIN_HOME:-$HOME/p2e-plugin}"
 
