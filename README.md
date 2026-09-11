@@ -50,7 +50,7 @@ Cursor reads the `.cursor/` directory directly. Clone or sync this repo so `.cur
 
 - Type **`/p2e-mode`** in Agent chat — Enter attaches it to one message; **Option+Enter** (Mac) / **Alt+Enter** (Windows) or **Use as Mode** keeps it on for the whole session as a Custom Mode (cyan `book-open` badge)
 - The always-applied rule `.cursor/rules/p2e-policy.mdc` keeps Cursor aligned with Claude and Codex
-- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) using the same URL as [`.mcp.json`](./.mcp.json) — `https://p2e-mocha.vercel.app/api/mcp` by default
+- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) using the same URL as [`.mcp.json`](./.mcp.json) — `https://p2e.columenlabs.com/api/mcp` by default
 
 ### Cloud Agents (product repos)
 
@@ -90,7 +90,7 @@ Neither hook does anything in repos that lack `.p2e/project.json` — non-P2E re
 
 ## Configure
 
-The plugin talks to a running P2E instance. It ships with the hosted production endpoint at `https://p2e-mocha.vercel.app/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json).
+The plugin talks to a running P2E instance. It ships with the hosted primary production endpoint at `https://p2e.columenlabs.com/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json). (The Vercel host `p2e-mocha.vercel.app` is parallel/legacy — not the canonical MCP URL.)
 
 To point it at your own instance, edit that URL directly — either in the plugin's `.mcp.json`, or in your own product repo's project-scoped `.mcp.json`:
 
@@ -110,7 +110,7 @@ The shipped `.mcp.json` holds a **literal** URL on purpose: Codex does not expan
 Claude Code *does* expand that syntax at connect time. If Claude Code is your only host, you can drive the endpoint from the environment in **your own** project-scoped `.mcp.json`:
 
 ```json
-{ "mcpServers": { "p2e": { "type": "http", "url": "${P2E_MCP_URL:-https://p2e-mocha.vercel.app/api/mcp}" } } }
+{ "mcpServers": { "p2e": { "type": "http", "url": "${P2E_MCP_URL:-https://p2e.columenlabs.com/api/mcp}" } } }
 ```
 
 Cursor takes the same URL in `.cursor/mcp.json`, and Codex users editing an already-installed MCP entry should set a concrete URL.
@@ -201,5 +201,6 @@ P2E's Patton v3 ontology, which this plugin tracks:
 ## Links
 
 - P2E main repo: https://github.com/columenlabs/p2e
-- Hosted demo: https://p2e-mocha.vercel.app
+- Hosted production: https://p2e.columenlabs.com (MCP `/api/mcp`)
+- Legacy Vercel surface: https://p2e-mocha.vercel.app
 - Issue tracker: https://github.com/columenlabs/p2e/issues

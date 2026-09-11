@@ -6,6 +6,7 @@
 - **`p2e-mode` / `p2e-model`** — Wave is a first-class unbounded package (`W{n}`, no W25 ceiling). BUILD flows call `waves.get` for membership freeze before story lists.
 - **MCP docs** — `waves` tool listed in skill MCP section and README tool table.
 - **`.cursor/rules/p2e-policy.mdc`**, **CLAUDE.md**, **README** — Wave noun replaces fixed W1–W25 / P0–P3 ordering language for packaging.
+- **Primary MCP host** — `.mcp.json`, `.cursor/mcp.json`, README, and `p2e-mode` skill now use `https://p2e.columenlabs.com/api/mcp`. `p2e-mocha.vercel.app` is documented as parallel/legacy only. OAuth/auth config unchanged.
 
 ## v0.12.11 — 2026-09-01
 

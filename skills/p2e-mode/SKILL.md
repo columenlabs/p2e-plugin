@@ -74,6 +74,8 @@ Tags (`backend` / `ui` / `external` / `docs` / `security`) select the verify/evi
 
 ## MCP
 
+Primary endpoint: `https://p2e.columenlabs.com/api/mcp` (OAuth unchanged). Configure via `.mcp.json` / `.cursor/mcp.json`.
+
 `products`/`flows`/`phases`/`uxos` · **`waves`** (`list`/`get`/`create`/`update`) · `stories` · `criteria` (`op=propose`) · `capabilities` · `relations` · `coverage` · `story_assets` · `story_log` · `validate` · `evidence`
 
 ## Pointers
