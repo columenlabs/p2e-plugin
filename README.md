@@ -36,7 +36,7 @@ From inside a Claude Code session:
 Pin the marketplace to a tag for stability:
 
 ```text
-/plugin marketplace add columenlabs/p2e-plugin@v0.12.10
+/plugin marketplace add columenlabs/p2e-plugin@v0.14.0
 /plugin install p2e@p2e-plugins
 ```
 
