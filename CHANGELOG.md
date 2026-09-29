@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased — v0.14-w23 (Wave noun)
+## v0.14.0 — 2026-09-24
+
+Wave becomes a first-class noun, the primary MCP host moves to `p2e.columenlabs.com`, and the Stories vs Issues split is written down as policy. There is no v0.13.
 
 ### Changed
 - **`p2e-mode` / `p2e-model`** — Wave is a first-class unbounded package (`W{n}`, no W25 ceiling). BUILD flows call `waves.get` for membership freeze before story lists.
@@ -8,6 +10,9 @@
 - **`.cursor/rules/p2e-policy.mdc`**, **CLAUDE.md**, **README** — Wave noun replaces fixed W1–W25 / P0–P3 ordering language for packaging.
 - **Primary MCP host** — `.mcp.json`, `.cursor/mcp.json`, README, and `p2e-mode` skill now use `https://p2e.columenlabs.com/api/mcp`. `p2e-mocha.vercel.app` is documented as parallel/legacy only. OAuth/auth config unchanged.
 - **Stories vs Issues** — durable policy in `p2e-mode` / `p2e-model` + README: layers = capability change; GH issues = bugs; no default issue↔story sync.
+- **Repo references** — owner moved to `columenlabs` after the org transfer.
+- **README** — marketplace pin example now points at `v0.14.0`.
+- Manifests bumped to **0.14.0**.
 
 ## v0.12.11 — 2026-09-01
 
