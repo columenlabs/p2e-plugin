@@ -94,7 +94,7 @@ Neither hook does anything in repos that lack `.p2e/project.json` — non-P2E re
 
 ## Configure
 
-The plugin talks to a running P2E instance. It ships with the hosted primary production endpoint at `https://p2e.columenlabs.com/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json). (The Vercel host `p2e-mocha.vercel.app` is a secondary surface whose MCP path is retired; never point a client at it.)
+The plugin talks to a running P2E instance. It ships with the hosted primary production endpoint at `https://p2e.columenlabs.com/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json). (The Vercel host `p2e-mocha.vercel.app` is deprecated and will be shut down; never point a client at it.)
 
 To point it at your own instance, edit that URL directly — either in the plugin's `.mcp.json`, or in your own product repo's project-scoped `.mcp.json`:
 
