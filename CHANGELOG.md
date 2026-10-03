@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.15.0 — 2026-10-03
+
+Claude Code now uses the claude.ai **p2e connector** as the only P2E MCP. The plugin no longer ships its own copy for Claude Code, which needed a separate sign-in and returned 401 in cloud sessions.
+
+### Removed
+- **Root `.mcp.json`** — moved to `.codex-plugin/mcp.json`, so Claude Code no longer auto-loads a `plugin:p2e:p2e` server. Codex reads the new path through `.codex-plugin/plugin.json`. Cursor is unchanged (`.cursor/mcp.json`).
+
+### Changed
+- **Hooks** — the PreToolUse slug validator now matches connector tools (`mcp__p2e__*`), keeping the legacy `mcp__plugin_p2e_p2e__*` prefix. Both hooks also accept `product_slug` in `.p2e/project.json`.
+- **`p2e-mode`** (both mirrors), **README**, **CLAUDE.md**, **reference/** — document the connector as the Claude Code MCP path.
+- **`scripts/validate-plugin.py`** — checks the new Codex MCP path and that no root `.mcp.json` comes back.
+- Manifests bumped to **0.15.0**.
+
 ## v0.14.0 — 2026-09-24
 
 Wave becomes a first-class noun, the primary MCP host moves to `p2e.columenlabs.com`, and the Stories vs Issues split is written down as policy. There is no v0.13.

@@ -43,13 +43,15 @@ def validate_json_files():
     claude_plugin = read_json(ROOT / ".claude-plugin" / "plugin.json")
     cursor_plugin = read_json(ROOT / ".cursor-plugin" / "plugin.json")
     marketplace = read_json(ROOT / ".claude-plugin" / "marketplace.json")
-    mcp = read_json(ROOT / ".mcp.json")
+    mcp = read_json(ROOT / ".codex-plugin" / "mcp.json")
     canonical_version = codex_manifest["version"]
 
     assert_equal(codex_manifest["name"], "p2e", "Codex plugin name mismatch")
     assert_equal(codex_manifest["skills"], "./skills/", "Codex skills path mismatch")
     assert_equal(
-        codex_manifest["mcpServers"], "./.mcp.json", "Codex MCP path mismatch"
+        codex_manifest["mcpServers"],
+        "./.codex-plugin/mcp.json",
+        "Codex MCP path mismatch",
     )
     assert_equal(
         codex_manifest["interface"]["composerIcon"],
@@ -85,6 +87,10 @@ def validate_json_files():
         "Claude plugin description should reference p2e-mode",
     )
     assert_true("mcpServers" in mcp and "p2e" in mcp["mcpServers"], "Missing p2e MCP server")
+    assert_true(
+        not (ROOT / ".mcp.json").exists(),
+        "Root .mcp.json must stay removed — Claude Code uses the claude.ai p2e connector",
+    )
 
 
 def validate_expected_files():
