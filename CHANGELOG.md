@@ -1,5 +1,18 @@
 # Changelog
 
+## v0.15.2 — 2026-10-03
+
+Claude Code now uses the claude.ai **p2e connector** as the only P2E MCP. The plugin no longer ships its own copy for Claude Code, which needed a separate sign-in and returned 401 in cloud sessions.
+
+### Removed
+- **Root `.mcp.json`** — moved to `.codex-plugin/mcp.json`, so Claude Code no longer auto-loads a `plugin:p2e:p2e` server. Codex reads the new path through `.codex-plugin/plugin.json`. Cursor is unchanged (`.cursor/mcp.json`).
+
+### Changed
+- **Hooks** — the PreToolUse slug validator now matches connector tools (`mcp__p2e__*`), keeping the legacy `mcp__plugin_p2e_p2e__*` prefix. Both hooks also accept `product_slug` in `.p2e/project.json`.
+- **`p2e-mode`** (both mirrors), **README**, **CLAUDE.md**, **reference/** — document the connector as the Claude Code MCP path.
+- **`scripts/validate-plugin.py`** — checks the new Codex MCP path and that no root `.mcp.json` comes back.
+- Manifests bumped to **0.15.2**.
+
 ## v0.15.1 — 2026-10-03
 
 Agents setting up a product can now find `products.bootstrap` from the skill.

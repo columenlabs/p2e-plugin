@@ -73,7 +73,7 @@ Body is the prompt Codex executes. Since v0.12, this repo ships a single **`p2e-
 
 ## MCP servers
 
-Same `.mcp.json` schema as Claude Code. The plugin in this repo shares `.mcp.json` between both adapters.
+Same `mcpServers` schema as Claude Code. This repo keeps it at `.codex-plugin/mcp.json` (not the root `.mcp.json`) so Claude Code does not auto-load a second copy; Claude Code uses the claude.ai p2e connector.
 
 ## Discovery and invocation
 
@@ -84,4 +84,4 @@ Same `.mcp.json` schema as Claude Code. The plugin in this repo shares `.mcp.jso
 - `.codex-plugin/plugin.json` with `skills`, `mcpServers`, `interface`
 - `skills/p2e-mode/SKILL.md` (entry point)
 - `skills/p2e-build/SKILL.md`, `skills/p2e-review/SKILL.md` (wave-run skills)
-- shared `.mcp.json`
+- `.codex-plugin/mcp.json` (Codex-only MCP config)

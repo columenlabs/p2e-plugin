@@ -1,9 +1,9 @@
 {
-  "description": "P2E hooks — PreToolUse project-slug validator (blocks mcp__plugin_p2e_p2e__* calls whose project_slug mismatches the repo binding) + SessionStart bound-project reminder (injects system-reminder naming the bound P2E project).",
+  "description": "P2E hooks — PreToolUse project-slug validator (blocks mcp__p2e__* connector calls, and legacy mcp__plugin_p2e_p2e__* calls, whose project_slug mismatches the repo binding) + SessionStart bound-project reminder (injects system-reminder naming the bound P2E project).",
   "hooks": {
     "PreToolUse": [
       {
-        "matcher": "mcp__plugin_p2e_p2e__.*",
+        "matcher": "mcp__p2e__.*|mcp__plugin_p2e_p2e__.*",
         "hooks": [
           {
             "type": "command",

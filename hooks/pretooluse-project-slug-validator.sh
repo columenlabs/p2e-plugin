@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# pretooluse-project-slug-validator.sh — PreToolUse hook: blocks mcp__plugin_p2e_p2e__* calls
+# pretooluse-project-slug-validator.sh — PreToolUse hook: blocks mcp__p2e__* calls
 # whose project_slug does not match the repo-bound slug in .p2e/project.json.
 #
 # Claude Code invokes this hook via stdin with the tool-call JSON payload.
@@ -7,7 +7,8 @@
 # Exit 1  = block the tool call (stderr message shown to user).
 #
 # Short-circuit conditions (exit 0):
-#   1. Tool name does not match the mcp__plugin_p2e_p2e__* prefix.
+#   1. Tool name does not match the mcp__p2e__* (claude.ai connector) or legacy
+#      mcp__plugin_p2e_p2e__* prefix.
 #   2. .p2e/project.json does not exist in the project directory.
 #   3. tool_input.project_slug is absent from the payload.
 #   4. The slug in the payload matches the bound slug.
@@ -28,7 +29,7 @@ fi
 # --------------------------------------------------------------------------- #
 TOOL_NAME="$(printf '%s' "$PAYLOAD" | jq -r '.tool_name // empty' 2>/dev/null || true)"
 case "${TOOL_NAME:-}" in
-  mcp__plugin_p2e_p2e__*)
+  mcp__p2e__*|mcp__plugin_p2e_p2e__*)
     : # falls through to validation
     ;;
   *)
@@ -49,7 +50,7 @@ fi
 # --------------------------------------------------------------------------- #
 # Parse bound slug from binding file
 # --------------------------------------------------------------------------- #
-BOUND_SLUG="$(jq -r '.slug // empty' "$BINDING_FILE" 2>/dev/null || true)"
+BOUND_SLUG="$(jq -r '.slug // .product_slug // empty' "$BINDING_FILE" 2>/dev/null || true)"
 
 if [ -z "${BOUND_SLUG:-}" ]; then
   # Malformed binding — warn but allow (do not block on corrupted anchor).

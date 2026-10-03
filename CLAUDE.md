@@ -29,7 +29,7 @@ skills/p2e-build/, p2e-review/ ← wave-run skills
 .cursor/skills/             ← Cursor mirrors of all three
 .cursor/rules/              ← Cursor always-apply rules
 hooks/                      ← Claude Code hooks (project-slug validator, session start)
-.mcp.json                   ← shared MCP server config
+.codex-plugin/mcp.json      ← Codex MCP server config (Claude Code uses the claude.ai connector)
 .claude-plugin/plugin.json  ← Claude Code manifest
 .codex-plugin/plugin.json   ← Codex manifest
 AGENTS.md                   ← always-on orientation file
@@ -51,7 +51,7 @@ docs/archive/               ← pre-v0.12 historical docs
 | Skills | yes (`skills/`) | yes (`skills/`) | yes (`.cursor/skills/`) |
 | `PreToolUse` hooks | yes | no | no |
 | `SessionStart` hooks | yes | partial | no |
-| MCP servers | yes (`.mcp.json`) | yes (`.mcp.json`) | yes (`.cursor/mcp.json` or shared) |
+| MCP servers | claude.ai p2e connector (`mcp__p2e__*`) | yes (`.codex-plugin/mcp.json`) | yes (`.cursor/mcp.json`) |
 | Task primitive (orchestrator progress board) | yes (`TaskCreate`/`TaskUpdate`) | yes (`update_plan` or equivalent) | no — fall back to per-step `kind: NOTE` `story_log` entries |
 
 Workflows that depend on a hook (e.g. the P2E project-slug validator) must degrade gracefully on platforms that lack it.

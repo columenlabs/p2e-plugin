@@ -1,6 +1,6 @@
 {
   "name": "p2e",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "P2E operating mode for Codex \u2014 p2e-mode skill (bind, MCP surface, lifecycle contract, assessment gates) plus p2e-build and p2e-review wave-run skills. Legacy granular workflow skills removed in v0.12. Backed by the P2E MCP.",
   "author": {
     "name": "bchoor",
@@ -18,7 +18,7 @@
     "workflow"
   ],
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "mcpServers": "./.codex-plugin/mcp.json",
   "interface": {
     "displayName": "P2E",
     "shortDescription": "P2E operating mode \u2014 read p2e-mode at session start",

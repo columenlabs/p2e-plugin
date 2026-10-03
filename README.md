@@ -44,7 +44,7 @@ The marketplace is named `p2e-plugins`; the plugin itself is named `p2e`.
 
 ## Install in Codex
 
-This repository includes a native Codex plugin manifest at [`.codex-plugin/plugin.json`](./.codex-plugin/plugin.json) plus the shared MCP config at [`.mcp.json`](./.mcp.json).
+This repository includes a native Codex plugin manifest at [`.codex-plugin/plugin.json`](./.codex-plugin/plugin.json) plus its MCP config at [`.codex-plugin/mcp.json`](./.codex-plugin/mcp.json).
 
 Codex uses the **`p2e-mode`** skill as the sole entry point. Read it at session start before any P2E MCP operations.
 
@@ -54,7 +54,7 @@ Cursor reads the `.cursor/` directory directly. Clone or sync this repo so `.cur
 
 - Type **`/p2e-mode`** in Agent chat — Enter attaches it to one message; **Option+Enter** (Mac) / **Alt+Enter** (Windows) or **Use as Mode** keeps it on for the whole session as a Custom Mode (cyan `book-open` badge)
 - The always-applied rule `.cursor/rules/p2e-policy.mdc` keeps Cursor aligned with Claude and Codex
-- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) using the same URL as [`.mcp.json`](./.mcp.json) — `https://p2e.columenlabs.com/api/mcp` by default
+- Point Cursor at the P2E MCP server via `.cursor/mcp.json` (or your global Cursor MCP config) — `https://p2e.columenlabs.com/api/mcp` by default
 
 ### Cloud Agents (product repos)
 
@@ -70,7 +70,7 @@ Do **not** put a skill path in `.env`. Hook the same `.cursor/environment.json` 
 
 Append those commands to your existing `install` / `start` (keep your `.env` and dependency steps). `install` snapshots the clone into the Build; `start --update` pulls `main` at the beginning of each session so new Cloud Agents pick up plugin changes without a rebuild. The script symlinks **`p2e-mode`**, the always-apply rule, and merges MCP config into the product workspace. Symlinks are listed in `.git/info/exclude` so they are not committed.
 
-Commit a `p2e` entry in the product repo's `.cursor/mcp.json` (same URL as [`.mcp.json`](./.mcp.json)) so MCP is present even before the script merges it.
+Commit a `p2e` entry in the product repo's `.cursor/mcp.json` (`https://p2e.columenlabs.com/api/mcp`) so MCP is present even before the script merges it.
 
 ## Bind a repo (`.p2e/project.json`)
 
@@ -88,42 +88,25 @@ Derive `github_repo` from `git remote get-url origin` and match `slug` against t
 Once the file is present, two plugin hooks activate automatically on Claude Code:
 
 - **SessionStart** — injects a system-reminder at the start of every session naming the bound `project_slug` and `github_repo`.
-- **PreToolUse** — intercepts every `mcp__plugin_p2e_p2e__*` tool call and blocks it if `project_slug` does not match the bound slug, printing a clear mismatch error with the bound value.
+- **PreToolUse** — intercepts every `mcp__p2e__*` tool call and blocks it if `project_slug` does not match the bound slug, printing a clear mismatch error with the bound value.
 
 Neither hook does anything in repos that lack `.p2e/project.json` — non-P2E repos are unaffected.
 
 ## Configure
 
-The plugin talks to a running P2E instance. It ships with the hosted primary production endpoint at `https://p2e.columenlabs.com/api/mcp` written as a concrete URL in [`.mcp.json`](./.mcp.json). (The Vercel host `p2e-mocha.vercel.app` is deprecated and will be shut down; never point a client at it.)
+The P2E MCP endpoint is `https://p2e.columenlabs.com/api/mcp`. (The Vercel host `p2e-mocha.vercel.app` is deprecated and will be shut down; never point a client at it.)
 
-To point it at your own instance, edit that URL directly — either in the plugin's `.mcp.json`, or in your own product repo's project-scoped `.mcp.json`:
+- **Claude Code** — add the **p2e connector** on claude.ai (Settings → Connectors) with that URL. Its tools appear as `mcp__p2e__*` in Claude Code CLI, desktop and cloud sessions. Since v0.15.2 the plugin ships no MCP server for Claude Code, so there is no second, separately-authorized copy. For a CLI-only setup without claude.ai, run `claude mcp add --transport http p2e https://p2e.columenlabs.com/api/mcp` (same `mcp__p2e__*` names).
+- **Codex** — reads [`.codex-plugin/mcp.json`](./.codex-plugin/mcp.json). The URL is a literal on purpose: Codex does not expand `${VAR:-fallback}` in its MCP auth flow, and an unexpanded `${...}` string breaks login discovery.
+- **Cursor** — reads `.cursor/mcp.json`.
 
-```json
-{
-  "mcpServers": {
-    "p2e": {
-      "type": "http",
-      "url": "https://<your-p2e-instance>/api/mcp"
-    }
-  }
-}
-```
-
-The shipped `.mcp.json` holds a **literal** URL on purpose: Codex does not expand shell-style `${VAR:-fallback}` syntax in its MCP auth flow, and an unexpanded `${...}` string breaks Codex login discovery. Keep the plugin's own `.mcp.json` literal so it stays Codex-safe.
-
-Claude Code *does* expand that syntax at connect time. If Claude Code is your only host, you can drive the endpoint from the environment in **your own** project-scoped `.mcp.json`:
-
-```json
-{ "mcpServers": { "p2e": { "type": "http", "url": "${P2E_MCP_URL:-https://p2e.columenlabs.com/api/mcp}" } } }
-```
-
-Cursor takes the same URL in `.cursor/mcp.json`, and Codex users editing an already-installed MCP entry should set a concrete URL.
+To point at your own instance, change the URL in the connector or in the host's MCP config.
 
 Auth is handled by the host application's MCP flow on first use.
 
 ## MCP tool surface
 
-The plugin exposes the P2E MCP server tools via `mcp__plugin_p2e_p2e__*`. Each tool accepts an `op` parameter to select the operation.
+The P2E MCP server tools appear as `mcp__p2e__*` (claude.ai connector). Each tool accepts an `op` parameter to select the operation.
 
 | Tool | Ops | Summary |
 |------|-----|---------|

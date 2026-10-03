@@ -91,6 +91,6 @@ Standard MCP server config. Servers start automatically when the plugin is enabl
 - `skills/p2e-mode/` (entry point; also mirrored under `.cursor/skills/`)
 - `skills/p2e-build/`, `skills/p2e-review/` (wave-run skills, `/p2e-build <release> <wave>` and `/p2e-review <release> <wave>`)
 - `hooks/` (PreToolUse project-slug validator, SessionStart bound-project reminder)
-- `.mcp.json` (P2E MCP)
+- No `.mcp.json` since v0.15.2: the P2E MCP comes from the claude.ai p2e connector (`mcp__p2e__*`)
 
 Legacy slash-command wrappers, shared workflow markdown, and bundled agents were removed in v0.12+.

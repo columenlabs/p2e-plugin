@@ -90,7 +90,7 @@ Tags (`backend` / `ui` / `external` / `docs` / `security`) select the verify/evi
 
 ## MCP
 
-Primary endpoint: `https://p2e.columenlabs.com/api/mcp` (OAuth unchanged). Configure via `.mcp.json` / `.cursor/mcp.json`.
+Primary endpoint: `https://p2e.columenlabs.com/api/mcp` (OAuth unchanged). Claude Code uses the claude.ai **p2e connector** (tools `mcp__p2e__*`); the plugin ships no MCP server for Claude Code. Codex reads `.codex-plugin/mcp.json`; Cursor reads `.cursor/mcp.json`.
 
 `products`/`flows`/`phases`/`uxos` · **`waves`** (`list`/`get`/`create`/`update`) · `stories` · `criteria` (`op=propose`) · `capabilities` · `relations` · `coverage` · `story_assets` · `story_log` · `validate` · `evidence`
 

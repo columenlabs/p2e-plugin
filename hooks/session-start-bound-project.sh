@@ -30,7 +30,7 @@ fi
 # --------------------------------------------------------------------------- #
 # Parse binding file with jq
 # --------------------------------------------------------------------------- #
-SLUG="$(jq -r '.slug // empty' "$BINDING_FILE" 2>/dev/null || true)"
+SLUG="$(jq -r '.slug // .product_slug // empty' "$BINDING_FILE" 2>/dev/null || true)"
 GITHUB_REPO="$(jq -r '.github_repo // empty' "$BINDING_FILE" 2>/dev/null || true)"
 
 if [ -z "${SLUG:-}" ] || [ -z "${GITHUB_REPO:-}" ]; then
@@ -48,7 +48,7 @@ cat <<EOF
 
 This repo is bound to P2E project **${SLUG}** (GitHub: ${GITHUB_REPO}).
 
-Every \`mcp__plugin_p2e_p2e__*\` (and \`mcp__p2e__*\`) tool call in this session
+Every \`mcp__p2e__*\` tool call in this session
 must use \`project_slug: "${SLUG}"\`. The PreToolUse validator hook will block any
 call whose \`project_slug\` does not match the bound slug.
 
