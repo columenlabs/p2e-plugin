@@ -4,7 +4,7 @@ This plugin connects [P2E](https://github.com/columenlabs/p2e) story-map work to
 
 P2E is **product intelligence** — a living map of your product that grows iteratively as you capture UXOs, draft layers, implement, and land work. It is not a one-shot spec tool.
 
-**v0.12+ ships a single skill: `p2e-mode`.** In Cursor, invoke `/p2e-mode` or run it as a Custom Mode for the session. Entity/assessment facts live in [`references/p2e-model.md`](skills/p2e-mode/references/p2e-model.md). Legacy `/p2e-*` slash commands are removed.
+**`p2e-mode`** is the entry skill. **v0.15+** adds two wave-run skills: **`/p2e-build <release> <wave>`** (build members in order, verify every AC, record evidence; Sonnet) and **`/p2e-review <release> <wave>`** (review the evidence without re-testing and leave notes for the builder; Opus). Both arguments are required. In Cursor, invoke `/p2e-mode` or run it as a Custom Mode for the session. Entity/assessment facts live in [`references/p2e-model.md`](skills/p2e-mode/references/p2e-model.md). Legacy `/p2e-*` slash commands are removed.
 
 It tracks the P2E **Patton v3 Flow/Foundation model**: every project is a *Product* with two seeded Flows — a persona Flow (the user-journey lane) and an immutable Foundation Flow (8 platform/infra slots). Shipping work is packaged as unbounded **Waves** (`W{n}`, no W25 ceiling) owned by Product+Release; layers carry a denormalized wave stamp. See [Flow / Foundation model](#flow--foundation-model) below.
 
@@ -96,7 +96,7 @@ Neither hook does anything in repos that lack `.p2e/project.json` — non-P2E re
 
 The P2E MCP endpoint is `https://p2e.columenlabs.com/api/mcp`. (The Vercel host `p2e-mocha.vercel.app` is deprecated and will be shut down; never point a client at it.)
 
-- **Claude Code** — add the **p2e connector** on claude.ai (Settings → Connectors) with that URL. Its tools appear as `mcp__p2e__*` in Claude Code CLI, desktop and cloud sessions. Since v0.15.0 the plugin ships no MCP server for Claude Code, so there is no second, separately-authorized copy. For a CLI-only setup without claude.ai, run `claude mcp add --transport http p2e https://p2e.columenlabs.com/api/mcp` (same `mcp__p2e__*` names).
+- **Claude Code** — add the **p2e connector** on claude.ai (Settings → Connectors) with that URL. Its tools appear as `mcp__p2e__*` in Claude Code CLI, desktop and cloud sessions. Since v0.15.2 the plugin ships no MCP server for Claude Code, so there is no second, separately-authorized copy. For a CLI-only setup without claude.ai, run `claude mcp add --transport http p2e https://p2e.columenlabs.com/api/mcp` (same `mcp__p2e__*` names).
 - **Codex** — reads [`.codex-plugin/mcp.json`](./.codex-plugin/mcp.json). The URL is a literal on purpose: Codex does not expand `${VAR:-fallback}` in its MCP auth flow, and an unexpanded `${...}` string breaks login discovery.
 - **Cursor** — reads `.cursor/mcp.json`.
 

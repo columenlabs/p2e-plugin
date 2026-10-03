@@ -20,6 +20,7 @@ Before create/update/UXO/Wave work: [`references/p2e-model.md`](references/p2e-m
 
 - `.p2e/project.json` → `product_slug` on every MCP call. No binding → create one before any other call.
 - Legacy `project_slug` still accepted.
+- **New product:** `products op=create` seeds the Foundation Flow (8 slots) and a persona starter in one call. **Existing product missing that graph:** `products op=bootstrap` adds it and is safe to re-run. Check with `flows op=list` → the Foundation Flow's `phases op=list` returns the 8 Foundation names.
 
 ## Stories vs Issues
 
@@ -74,6 +75,15 @@ Create/update packages via `waves` (`n=auto` or explicit); membership rewrite st
 3. **Mismatch** — verifier ≠ reviewer → human reads Review view / AC modal.
 4. **Human** — Mark DONE when satisfied.
 
+## Wave runs
+
+A wave runs as two sessions, each a required-argument skill:
+
+1. **`/p2e-build <release> <wave>`** (Sonnet) — build members in order, verify every AC, record evidence and status; browser checks in Sonnet subagents. Ends with stories in `IN_REVIEW` and the wave PR open.
+2. **`/p2e-review <release> <wave>`** (Opus, separate session) — review the recorded evidence without re-testing; propose reviewer assessments and leave `story_log` notes for the builder. Re-running `/p2e-build` picks the notes up.
+
+Merge only after review passes and a human approves.
+
 ## Tags
 
 Tags (`backend` / `ui` / `external` / `docs` / `security`) select the verify/evidence shape the gate expects — same lifecycle, different proof. Shapes: `references/p2e-model.md`.
@@ -87,5 +97,6 @@ Primary endpoint: `https://p2e.columenlabs.com/api/mcp` (OAuth unchanged). Claud
 ## Pointers
 
 - Model + Wave + tags + Stories vs Issues: `references/p2e-model.md`
+- Wave runs: `p2e-build/SKILL.md`, `p2e-review/SKILL.md`
 - Release reviewer subagent (Cursor): `.cursor/agents/p2e-reviewer.md`
 - Product repo (when present): `docs/P2E-lifecycle.md`, `docs/P2E-handover.md`

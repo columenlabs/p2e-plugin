@@ -6,7 +6,7 @@ Project-specific instructions for Claude Code (and any AI agent reading this fil
 
 A multi-platform plugin that surfaces P2E story-map guidance on Claude Code, Codex, and Cursor — all backed by the shared P2E MCP server.
 
-**v0.12+:** Single **`p2e-mode`** skill. Legacy `/p2e-*` commands, granular workflow skills, bundled subagents, and `workflows/` are removed. See CHANGELOG v0.12.0.
+**v0.12+:** **`p2e-mode`** is the entry skill. **v0.15+** adds two wave-run skills, **`p2e-build`** and **`p2e-review`** (both take required `<release> <wave>` arguments). Legacy `/p2e-*` commands, granular workflow skills, bundled subagents, and `workflows/` are removed. See CHANGELOG v0.12.0.
 
 ## The p2e-mode contract (mandatory)
 
@@ -24,8 +24,9 @@ When changing P2E operating rules, update **p2e-mode** in both `skills/` and `.c
 ## Source-of-truth layout
 
 ```
-skills/p2e-mode/            ← sole Codex skill (entry point)
-.cursor/skills/p2e-mode/    ← Cursor mirror
+skills/p2e-mode/            ← Codex entry skill
+skills/p2e-build/, p2e-review/ ← wave-run skills
+.cursor/skills/             ← Cursor mirrors of all three
 .cursor/rules/              ← Cursor always-apply rules
 hooks/                      ← Claude Code hooks (project-slug validator, session start)
 .codex-plugin/mcp.json      ← Codex MCP server config (Claude Code uses the claude.ai connector)
@@ -69,6 +70,7 @@ This plugin tracks the P2E backend's Patton v3 ontology — keep skill prose con
 | Change | Files to touch |
 |---|---|
 | p2e-mode session entry | Both `skills/p2e-mode/SKILL.md` mirrors + CHANGELOG + manifests |
+| Wave-run steps | Both `p2e-build` / `p2e-review` mirrors + CHANGELOG + manifests |
 | P2E entity definitions / recipes | Both `skills/p2e-mode/references/p2e-model.md` mirrors + CHANGELOG |
 | Cursor policy | `.cursor/rules/p2e-policy.mdc` |
 | Platform schema change (upstream) | Matching `reference/<platform>.md` (refresh date + source URL in the header) |

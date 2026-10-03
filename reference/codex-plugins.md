@@ -82,5 +82,6 @@ Same `mcpServers` schema as Claude Code. This repo keeps it at `.codex-plugin/mc
 ## What this repo uses (v0.12+)
 
 - `.codex-plugin/plugin.json` with `skills`, `mcpServers`, `interface`
-- `skills/p2e-mode/SKILL.md` (sole entry point)
+- `skills/p2e-mode/SKILL.md` (entry point)
+- `skills/p2e-build/SKILL.md`, `skills/p2e-review/SKILL.md` (wave-run skills)
 - `.codex-plugin/mcp.json` (Codex-only MCP config)

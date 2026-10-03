@@ -7,6 +7,7 @@ import sys
 
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
+SKILL_NAMES = ("p2e-mode", "p2e-build", "p2e-review")
 
 
 def read_json(path: pathlib.Path):
@@ -108,7 +109,7 @@ def validate_expected_files():
     )
 
     expected_codex_skill_paths = {
-        ROOT / "skills" / "p2e-mode" / "SKILL.md",
+        ROOT / "skills" / name / "SKILL.md" for name in SKILL_NAMES
     }
     actual_codex_skill_paths = set((ROOT / "skills").glob("*/SKILL.md"))
     assert_equal(
@@ -116,7 +117,7 @@ def validate_expected_files():
     )
 
     expected_cursor_skill_paths = {
-        ROOT / ".cursor" / "skills" / "p2e-mode" / "SKILL.md",
+        ROOT / ".cursor" / "skills" / name / "SKILL.md" for name in SKILL_NAMES
     }
     actual_cursor_skill_paths = set((ROOT / ".cursor" / "skills").glob("*/SKILL.md"))
     assert_equal(
@@ -236,6 +237,33 @@ def validate_p2e_mode_skill():
             )
 
 
+def validate_wave_run_skills():
+    for name in ("p2e-build", "p2e-review"):
+        codex = read_text(ROOT / "skills" / name / "SKILL.md")
+        cursor = read_text(ROOT / ".cursor" / "skills" / name / "SKILL.md")
+        assert_equal(cursor, codex, f"{name} Cursor mirror must match skills/{name}")
+        assert_no_auditor_prose(codex, f"skills/{name}/SKILL.md")
+        for required_phrase in (
+            f"name: {name}",
+            "argument-hint: <release> <wave>",
+            "disable-model-invocation: true",
+            "If either is missing",
+            "waves.get",
+            "p2e-mode",
+            "Never merge",
+        ):
+            assert_true(
+                required_phrase in codex,
+                f"skills/{name}/SKILL.md missing required phrase: {required_phrase}",
+            )
+    review = read_text(ROOT / "skills" / "p2e-review" / "SKILL.md")
+    for required_phrase in ("No re-testing", "reviewer viewer role", "Opus"):
+        assert_true(required_phrase in review, f"p2e-review missing: {required_phrase}")
+    build = read_text(ROOT / "skills" / "p2e-build" / "SKILL.md")
+    for required_phrase in ("Sonnet", "subagents", "NOT_TESTED"):
+        assert_true(required_phrase in build, f"p2e-build missing: {required_phrase}")
+
+
 def validate_p2e_reviewer_agent():
     agent_path = ROOT / ".cursor" / "agents" / "p2e-reviewer.md"
     assert_true(agent_path.exists(), "Missing .cursor/agents/p2e-reviewer.md")
@@ -343,6 +371,7 @@ def main():
     validate_json_files()
     validate_expected_files()
     validate_p2e_mode_skill()
+    validate_wave_run_skills()
     validate_p2e_reviewer_agent()
     validate_policy_rule()
     validate_stale_references()

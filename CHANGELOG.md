@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.15.0 — 2026-10-03
+## v0.15.2 — 2026-10-03
 
 Claude Code now uses the claude.ai **p2e connector** as the only P2E MCP. The plugin no longer ships its own copy for Claude Code, which needed a separate sign-in and returned 401 in cloud sessions.
 
@@ -11,6 +11,29 @@ Claude Code now uses the claude.ai **p2e connector** as the only P2E MCP. The pl
 - **Hooks** — the PreToolUse slug validator now matches connector tools (`mcp__p2e__*`), keeping the legacy `mcp__plugin_p2e_p2e__*` prefix. Both hooks also accept `product_slug` in `.p2e/project.json`.
 - **`p2e-mode`** (both mirrors), **README**, **CLAUDE.md**, **reference/** — document the connector as the Claude Code MCP path.
 - **`scripts/validate-plugin.py`** — checks the new Codex MCP path and that no root `.mcp.json` comes back.
+- Manifests bumped to **0.15.2**.
+
+## v0.15.1 — 2026-10-03
+
+Agents setting up a product can now find `products.bootstrap` from the skill.
+
+### Changed
+- **`p2e-mode`** (+ mirror) — **Bind & scope** says when to use `products op=create` vs `products op=bootstrap`, and how to check the 8 Foundation phases. Replaces the cancelled docs story B-05-L29 (wave W2), whose `/p2e-bootstrap` premise was removed in v0.12.
+- Manifests bumped to **0.15.1**.
+
+## v0.15.0 — 2026-10-03
+
+Adds two wave-run skills so a wave runs as a build session and a separate review session.
+
+### Added
+- **`p2e-build`** — `/p2e-build <release> <wave>` (both required). Freezes the wave with `waves.get`, builds members in order on Sonnet, verifies every AC (browser checks in Sonnet subagents), records evidence and verifier assessments, moves stories to `IN_REVIEW`, opens the wave PR. Re-running picks up review notes. Never merges.
+- **`p2e-review`** — `/p2e-review <release> <wave>` (both required). Runs on Opus in a separate session; reviews recorded evidence and the PR diff without re-testing, proposes reviewer assessments, and leaves `story_log` notes for the builder. Never merges.
+
+### Changed
+- **`p2e-mode`** (+ mirror) — new **Wave runs** section pointing at both skills.
+- **`scripts/validate-plugin.py`** — expects the three-skill set and checks the new skills and their Cursor mirrors.
+- **`scripts/install-p2e-cursor-skills.sh`** — links `p2e-build` and `p2e-review` into product workspaces.
+- **README**, **AGENTS.md**, **CLAUDE.md**, **`.cursor/rules/p2e-policy.mdc`**, manifests — no longer describe `p2e-mode` as the only skill.
 - Manifests bumped to **0.15.0**.
 
 ## v0.14.0 — 2026-09-24
