@@ -88,7 +88,8 @@ Standard MCP server config. Servers start automatically when the plugin is enabl
 ## What this repo uses
 
 - `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
-- `skills/p2e-mode/` (sole entry point; also mirrored under `.cursor/skills/`)
+- `skills/p2e-mode/` (entry point; also mirrored under `.cursor/skills/`)
+- `skills/p2e-build/`, `skills/p2e-review/` (wave-run skills, `/p2e-build <release> <wave>` and `/p2e-review <release> <wave>`)
 - `hooks/` (PreToolUse project-slug validator, SessionStart bound-project reminder)
 - `.mcp.json` (P2E MCP)
 

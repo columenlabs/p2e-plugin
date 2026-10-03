@@ -6,7 +6,7 @@ This file is the orientation any AI agent (Codex CLI, Cursor agent, generic AGEN
 
 A multi-platform plugin that surfaces P2E story-map guidance on Claude Code, Codex, and Cursor — all backed by the shared P2E MCP server.
 
-**v0.12+ ships a single skill: `p2e-mode`.** Legacy `/p2e-*` slash commands, granular workflow skills, and bundled subagents are removed.
+**`p2e-mode`** is the entry skill; **v0.15+** adds the wave-run skills `p2e-build` and `p2e-review` (`/p2e-build <release> <wave>`, `/p2e-review <release> <wave>`). Legacy `/p2e-*` slash commands, granular workflow skills, and bundled subagents are removed.
 
 ## How to work in this repo
 

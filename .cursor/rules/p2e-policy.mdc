@@ -5,7 +5,7 @@ alwaysApply: true
 
 # P2E plugin — Cursor policy
 
-This repo ships P2E guidance to Claude Code, Codex, and Cursor through a **single skill**: `p2e-mode`. Legacy `/p2e-*` slash commands and granular workflow skills are removed in v0.12+.
+This repo ships P2E guidance to Claude Code, Codex, and Cursor through the entry skill `p2e-mode`, plus the wave-run skills `p2e-build` and `p2e-review` (v0.15+). Legacy `/p2e-*` slash commands and granular workflow skills are removed in v0.12+.
 
 ## Hard rules
 
