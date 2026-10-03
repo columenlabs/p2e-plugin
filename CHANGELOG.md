@@ -1,5 +1,13 @@
 # Changelog
 
+## v0.15.1 — 2026-10-03
+
+Agents setting up a product can now find `products.bootstrap` from the skill.
+
+### Changed
+- **`p2e-mode`** (+ mirror) — **Bind & scope** says when to use `products op=create` vs `products op=bootstrap`, and how to check the 8 Foundation phases. Replaces the cancelled docs story B-05-L29 (wave W2), whose `/p2e-bootstrap` premise was removed in v0.12.
+- Manifests bumped to **0.15.1**.
+
 ## v0.15.0 — 2026-10-03
 
 Adds two wave-run skills so a wave runs as a build session and a separate review session.

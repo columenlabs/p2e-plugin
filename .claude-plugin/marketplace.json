@@ -11,7 +11,7 @@
       "name": "p2e",
       "source": "./",
       "description": "p2e-mode skill (bind, MCP surface, lifecycle contract, assessment gates) plus /p2e-build and /p2e-review wave-run skills. Legacy /p2e-* commands, granular workflow skills, and bundled subagents removed in v0.12. Ships Codex skills and a Cursor `.cursor/` surface. Backed by the P2E MCP server (endpoint set as a concrete URL in `.mcp.json`).",
-      "version": "0.15.0",
+      "version": "0.15.1",
       "author": {
         "name": "bchoor"
       },
