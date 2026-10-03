@@ -116,6 +116,18 @@ else
   echo "p2e-cursor-skills: skip .cursor/skills/p2e-mode (repo-owned copy exists)"
 fi
 
+# Wave-run skills — same skip rule as p2e-mode.
+for skill in p2e-build p2e-review; do
+  if [[ ! -e "$WORKSPACE/.cursor/skills/$skill" ]]; then
+    link_into \
+      "$PLUGIN_ROOT/.cursor/skills/$skill" \
+      "$WORKSPACE/.cursor/skills/$skill" \
+      ".cursor/skills/$skill"
+  else
+    echo "p2e-cursor-skills: skip .cursor/skills/$skill (repo-owned copy exists)"
+  fi
+done
+
 link_into \
   "$PLUGIN_ROOT/.cursor/rules/p2e-policy.mdc" \
   "$WORKSPACE/.cursor/rules/p2e-policy.mdc" \

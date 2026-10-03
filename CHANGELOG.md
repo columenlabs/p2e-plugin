@@ -1,5 +1,20 @@
 # Changelog
 
+## v0.15.0 — 2026-10-03
+
+Adds two wave-run skills so a wave runs as a build session and a separate review session.
+
+### Added
+- **`p2e-build`** — `/p2e-build <release> <wave>` (both required). Freezes the wave with `waves.get`, builds members in order on Sonnet, verifies every AC (browser checks in Sonnet subagents), records evidence and verifier assessments, moves stories to `IN_REVIEW`, opens the wave PR. Re-running picks up review notes. Never merges.
+- **`p2e-review`** — `/p2e-review <release> <wave>` (both required). Runs on Opus in a separate session; reviews recorded evidence and the PR diff without re-testing, proposes reviewer assessments, and leaves `story_log` notes for the builder. Never merges.
+
+### Changed
+- **`p2e-mode`** (+ mirror) — new **Wave runs** section pointing at both skills.
+- **`scripts/validate-plugin.py`** — expects the three-skill set and checks the new skills and their Cursor mirrors.
+- **`scripts/install-p2e-cursor-skills.sh`** — links `p2e-build` and `p2e-review` into product workspaces.
+- **README**, **AGENTS.md**, **CLAUDE.md**, **`.cursor/rules/p2e-policy.mdc`**, manifests — no longer describe `p2e-mode` as the only skill.
+- Manifests bumped to **0.15.0**.
+
 ## v0.14.0 — 2026-09-24
 
 Wave becomes a first-class noun, the primary MCP host moves to `p2e.columenlabs.com`, and the Stories vs Issues split is written down as policy. There is no v0.13.

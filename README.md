@@ -4,7 +4,7 @@ This plugin connects [P2E](https://github.com/columenlabs/p2e) story-map work to
 
 P2E is **product intelligence** — a living map of your product that grows iteratively as you capture UXOs, draft layers, implement, and land work. It is not a one-shot spec tool.
 
-**v0.12+ ships a single skill: `p2e-mode`.** In Cursor, invoke `/p2e-mode` or run it as a Custom Mode for the session. Entity/assessment facts live in [`references/p2e-model.md`](skills/p2e-mode/references/p2e-model.md). Legacy `/p2e-*` slash commands are removed.
+**`p2e-mode`** is the entry skill. **v0.15+** adds two wave-run skills: **`/p2e-build <release> <wave>`** (build members in order, verify every AC, record evidence; Sonnet) and **`/p2e-review <release> <wave>`** (review the evidence without re-testing and leave notes for the builder; Opus). Both arguments are required. In Cursor, invoke `/p2e-mode` or run it as a Custom Mode for the session. Entity/assessment facts live in [`references/p2e-model.md`](skills/p2e-mode/references/p2e-model.md). Legacy `/p2e-*` slash commands are removed.
 
 It tracks the P2E **Patton v3 Flow/Foundation model**: every project is a *Product* with two seeded Flows — a persona Flow (the user-journey lane) and an immutable Foundation Flow (8 platform/infra slots). Shipping work is packaged as unbounded **Waves** (`W{n}`, no W25 ceiling) owned by Product+Release; layers carry a denormalized wave stamp. See [Flow / Foundation model](#flow--foundation-model) below.
 
