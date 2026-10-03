@@ -20,6 +20,7 @@ Before create/update/UXO/Wave work: [`references/p2e-model.md`](references/p2e-m
 
 - `.p2e/project.json` → `product_slug` on every MCP call. No binding → create one before any other call.
 - Legacy `project_slug` still accepted.
+- **New product:** `products op=create` seeds the Foundation Flow (8 slots) and a persona starter in one call. **Existing product missing that graph:** `products op=bootstrap` adds it and is safe to re-run. Check with `flows op=list` → the Foundation Flow's `phases op=list` returns the 8 Foundation names.
 
 ## Stories vs Issues
 
